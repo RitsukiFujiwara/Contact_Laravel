@@ -27,21 +27,23 @@
                         </div>
                     @endif
 
-                <p>index</p>
-                <table>
-                    <thead>
-                        <tbody>
-                            @foreach($contacts as $contact)
-                            <tr>
-                                <th>{{ $contact -> id}}</th>
-                                <td>{{ $contact -> username}}</td>
-                                <td>{{ $contact -> gender}}</td>
-                                <td><a href="{{ route('contact.show',['id' => $contact->id ]) }}">詳細を見る</a></td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </thead>
-                </table>
+                <p>edit</p>
+                
+                
+                <form method="GET" action="{{ route('contact.update', ['id' => $contact->id]) }}">
+                @csrf
+                <label>氏名</label><input type="text" name="username" value="{{ $contact->username}}">
+                    <br>
+                    <label>メールアドレス</label><input type="text" name="email" value="{{ $contact->email}}">
+                    <br>
+                    <label>電話番号</label><input type="text" name="tel" value="{{ $contact->tel}}">
+                    <br>
+                    <label>性別</label><input type="text" name="gender" value="{{ $contact->gender}}">
+                    <br>
+                    <label>内容</label><input type="text" name="text" value="{{ $contact->text}}">
+                    <br>
+                    <button>更新</button>
+                </form>
                 </div>
             </div>
         </div>

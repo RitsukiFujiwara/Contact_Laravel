@@ -13,14 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});   
+// Route::get('/', function () {
+//     return view('contact.index');
+// });
 
-Route::middleware('auth')->group(function(){
-});
 Auth::routes();
 
-// Route::post('/post' , [App\Http\Controllers\Contact\ContactFormController::class,'store']);
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\ContactFormController::class, 'index'])->name('index');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/contact/store', [App\Http\Controllers\ContactFormController::class, 'store'])->name('contact.store');
+Route::get('show/{id}', [App\Http\Controllers\ContactFormController::class, 'show'])->name('contact.show');
+Route::get('edit/{id}', [App\Http\Controllers\ContactFormController::class, 'edit'])->name('contact.edit');
+Route::get('update/{id}', [App\Http\Controllers\ContactFormController::class, 'update'])->name('contact.update');
